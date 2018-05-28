@@ -27,7 +27,6 @@ describe('InputFieldPasswordComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     const input = compiled.querySelector('input');
     input.value = '';
-    expect(component.formControl.status).toEqual('INVALID')
     fixture.detectChanges();
     const error = compiled.querySelector('.form-group .alert').children[0];
     expect(error.innerHTML.includes('This field is required')).toBeTruthy();
