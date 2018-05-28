@@ -1,0 +1,8 @@
+<div class="form-group">
+  <span *ngFor="let radioValue of data">
+    <input id="" type="radio" name="{{radioGroupName}}" [(ngModel)]="ngRadioValue" #inputForm="ngModel" value="{{radioValue}}" [required]="isRequired"/>
+    {{radioValue}}
+    <span *ngIf="viewType === 'block'"><br></span>
+  </span>
+</div>
+
