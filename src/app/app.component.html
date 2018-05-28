@@ -17,3 +17,9 @@
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
 </ul>
+
+<h2>Inline</h2>
+<app-input-field-radio [data]="['Male','Female','Others']" [viewType]="'inline'" [class]="'col-md-4'" [radioGroupName]="'gender'" [isRequired]="true"></app-input-field-radio>
+<h2>Block</h2>
+<app-input-field-radio [data]="['Yes','No']" [viewType]="'block'"></app-input-field-radio>
+<app-input-field-radio [data]="" [viewType]="'block'"></app-input-field-radio>

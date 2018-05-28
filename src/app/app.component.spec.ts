@@ -1,10 +1,25 @@
 import { TestBed, async } from '@angular/core/testing';
+
+import { BrowserModule } from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
+
 import { AppComponent } from './app.component';
+import { InputFieldEmailComponent } from './shared-utils/form-utils/input-field-email/input-field-email.component';
+import { InputFieldTextComponent} from './shared-utils/form-utils/input-field-text/input-field-text.component';
+import { InputFieldRadioComponent } from './shared-utils/form-utils/input-field-radio/input-field-radio.component';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        InputFieldEmailComponent,
+        InputFieldTextComponent,
+        InputFieldRadioComponent,
+      ],
+      imports: [
+        BrowserModule,
+        FormsModule,
       ],
     }).compileComponents();
   }));
