@@ -2,6 +2,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
 import {LabelComponent} from './shared-utils/form-utils/label/label.component';
@@ -12,6 +13,10 @@ import {InputFieldDateComponent} from './shared-utils/form-utils/input-field-dat
 import {ButtonComponent} from './shared-utils/form-utils/button/button.component';
 import {InputFieldRadioComponent} from './shared-utils/form-utils/input-field-radio/input-field-radio.component';
 import {InputFieldCheckboxComponent} from './shared-utils/form-utils/input-field-checkbox/input-field-checkbox.component';
+import {AppRoutingModule} from './app-routing.module';
+import {UsersComponent} from './users/users.component';
+
+import {UserService} from './users/shared/user.service';
 
 @NgModule({
   declarations: [
@@ -23,14 +28,17 @@ import {InputFieldCheckboxComponent} from './shared-utils/form-utils/input-field
     InputFieldTextComponent,
     ButtonComponent,
     InputFieldRadioComponent,
-    InputFieldCheckboxComponent
+    InputFieldCheckboxComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
