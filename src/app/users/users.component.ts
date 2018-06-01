@@ -3,6 +3,7 @@ import {UserService} from './shared/user.service';
 
 import {User} from './shared/user.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { RequestOptions} from "@angular/http"
 
 @Component({
   selector: 'app-users',
@@ -24,25 +25,35 @@ export class UsersComponent implements OnInit {
     // this.userService.addUser()
     // .subscribe(onSuccess => {console.log(onSuccess)}, onError => {console.log(onError)});
     // console.log(this.users);
+    const data = {
+      "firstName": "f1soft",
+      "middleName": "kumar",
+      "lastName": "user",
+      "emailAddress": "user@user.com",
+      "address": "user",
+      "mobileNumber": "2342347322",
+      "password": "user",
+      "activationCode": 526142,
+      "roles": []
+    };
+    const body = JSON.stringify(data);
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
 
-    this.http.post<User>('http://10.13.200.55:8080/bachaat/api/v1/user',
-      {
-        firstName: 'f1ssoft',
-        middleName: 'kumar',
-        lastName: 'user',
-        emailAddress: 'user@user.com',
-        address: 'user',
-        password: 'user',
-        mobileNumber: '9876543210'
-      }, {
-        headers: new HttpHeaders({'Access-Control-Allow-Origin': 'http://10.13.200.55:8080'})
-      }).subscribe(
-      res => {
-        console.log(res);
-      },
-      err => {
-        console.log('error occurred');
-      }
+    //headers.append('Content-Type', 'application/json');
+
+    const options = new RequestOptions();
+
+    // this.http.post<User>('/helloUrl/bachaat/api/v1/user', body , {headers : httpHeaders}
+    this.http.post<User>('http://10.13.200.57:8080/api/v1/user', body , {headers : httpHeaders}
+      ).subscribe(res => {
+            console.log(res);
+          },
+          err => {
+            console.log('error occurred');
+          }
     );
 
   }
@@ -65,8 +76,13 @@ export class UsersComponent implements OnInit {
   }
 
   onSubmit(value): void{
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
     console.log(value);
-    this.http.post<User>('http://10.13.200.55:8080/bachaat/api/v1/user', value).subscribe(
+    let body: User = value;
+    this.http.post<User>('http://10.13.200.57:8080/bachaat/api/v1/user', value, {headers: httpHeaders}).subscribe(
       res => {
         console.log(res);
       },

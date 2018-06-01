@@ -1,0 +1,8 @@
+{
+  "/helloUrl": {
+    "target": "http://10.13.200.57:8080",
+    "secure": false,
+    "loglevel": "debug",
+    "changeOrigin": true
+  }
+}

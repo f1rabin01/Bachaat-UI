@@ -20,7 +20,7 @@ const httpPostOptions = {
 };
 @Injectable()
 export class UserService {
-  private userUrl = 'http://10.13.200.55:8080/bachaat/api/v1/user';
+  private userUrl = 'http://10.13.200.57:8080/api/v1/user';
   constructor( private http: HttpClient) {}
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl, httpOptions)
@@ -61,7 +61,8 @@ export class UserService {
   //   const id = typeof user === 'number' ? user : user.id;
   //   // const deleteUrl = this.userUrl + '/delete?id=' + id;
   //   const params = new HttpParams().set('id', id);
-  //   const url = `${this.userUrl}/delete` + {params};
+  //   const url = `${this.userUrl}/delete` + {params: params};
+  //   console.log(params);
   //   console.log(url);
   //   return this.http.post(url, '').pipe();
   // }

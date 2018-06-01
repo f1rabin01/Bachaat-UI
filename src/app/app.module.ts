@@ -17,6 +17,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {UsersComponent} from './users/users.component';
 
 import {UserService} from './users/shared/user.service';
+// import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
   declarations: [
