@@ -12,6 +12,7 @@ import {InputFieldDateComponent} from './shared-utils/form-utils/input-field-dat
 import {ButtonComponent} from './shared-utils/form-utils/button/button.component';
 import {InputFieldRadioComponent} from './shared-utils/form-utils/input-field-radio/input-field-radio.component';
 import {InputFieldCheckboxComponent} from './shared-utils/form-utils/input-field-checkbox/input-field-checkbox.component';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {InputFieldCheckboxComponent} from './shared-utils/form-utils/input-field
     InputFieldTextComponent,
     ButtonComponent,
     InputFieldRadioComponent,
-    InputFieldCheckboxComponent
+    InputFieldCheckboxComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
