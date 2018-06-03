@@ -1,0 +1,32 @@
+<div class="container">
+  <br/>
+  <div class="row">
+    <div class="col-sm-6 mx-auto">
+      <form #form="ngForm" (submit)="onSubmit(form.value)">
+        <app-label [labelName]="'First Name'" [isRequired]="true"></app-label>
+        <app-input-field-text [inputType]="'text'" name="firstName" [(ngModel)]="firstName" [minLength]="3" [maxLength]="25"></app-input-field-text>
+
+        <app-label [labelName]="'Middle Name'"></app-label>
+        <app-input-field-text [inputType]="'text'" name="middleName" [(ngModel)]="middleName" [minLength]="1" [maxLength]="25" [isRequired]="false"></app-input-field-text>
+
+        <app-label [labelName]="'Last Name'" [isRequired]="true"></app-label>
+        <app-input-field-text [inputType]="'text'" name="lastName" [(ngModel)]="lastName" [minLength]="3" [maxLength]="25"></app-input-field-text>
+
+        <app-label [labelName]="'Password'" [isRequired]="true"></app-label>
+        <app-input-field-password name="password" [(ngModel)]="password" [minLength]="8" [maxLength]="30"></app-input-field-password>
+
+        <app-label [labelName]="'Email Address'" [isRequired]="true"></app-label>
+        <app-input-field-email name="emailAddress" [(ngModel)]="emailAddress"></app-input-field-email>
+
+        <app-label [labelName]="'Address'" [isRequired]="true"></app-label>
+        <app-input-field-text [inputType]="'text'" name="address" [(ngModel)]="address" [minLength]="3" [maxLength]="25"></app-input-field-text>
+
+        <app-label [labelName]="'Mobile Number'" [isRequired]="true"></app-label>
+        <app-input-field-text name="mobileNumber" [(ngModel)]="mobileNumber" [minLength]="7" [maxLength]="10"></app-input-field-text>
+
+        <app-button routerLink="/login" [buttonType]="'button'" [buttonValue]="'Cancel'" [buttonClass]="'btn btn-danger'"></app-button>        
+        <app-button [buttonType]="'submit'" [buttonValue]="'Register'" [buttonClass]="'btn btn-primary'"></app-button>
+      </form>
+    </div>
+  </div>
+</div>

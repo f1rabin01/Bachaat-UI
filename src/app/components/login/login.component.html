@@ -1,0 +1,15 @@
+<div class="container">
+  <br/>
+  <div class="row">
+    <div class="col-sm-3 mx-auto">
+      <form #form="ngForm" (submit)="onSubmit(form.value)">
+        <app-label [isRequired]="true" [labelName]="'Username'"></app-label>
+        <app-input-field-text [inputType]="'text'" [(ngModel)]="username" name="username"></app-input-field-text>
+        <app-label [isRequired]="true" [labelName]="'Password'"></app-label>
+        <app-input-field-password [(ngModel)]="password" name="password" [minLength]="8" [maxLength]="30"></app-input-field-password>
+        <app-button [buttonType]="'submit'" [buttonValue]="'Login'" [buttonClass]="'btn btn-primary'"></app-button>
+        <app-button routerLink="/register" [buttonType]="'button'" [buttonValue]="'Register'" [buttonClass]="'btn btn-link'"></app-button>
+      </form>
+    </div>
+  </div>
+</div>
