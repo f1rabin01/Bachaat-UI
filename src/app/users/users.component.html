@@ -25,17 +25,32 @@
     <td>{{user.activationCode}}</td>
     <td>{{user.active}}</td>
     <td>{{user.password}}</td>
-    <td><a (click)="edit(user)">Edit</a> | <a (click)="delete(user)">Delete</a></td>
+    <td><a routerLink="user/{{user.id}}" (click)="edit(user)">Edit</a> | <a (click)="delete(user)">Delete</a></td>
   </tr>
   </tbody>
 </table>
 
 <form #form="ngForm" (submit)="onSubmit(form.value)">
-  <app-label [labelName]="'First name'"></app-label>
-  <app-input-field-text name="firstname" [(ngModel)]="firstname" [inputType]="'text'"></app-input-field-text>
+  <app-label [labelName]="'First name'" [isRequired]="true"></app-label>
+  <app-input-field-text name="firstName" [(ngModel)]="firstName" [inputType]="'text'"></app-input-field-text>
 
-  <app-label [labelName]="'Last name'"></app-label>
-  <app-input-field-text name="lastname" [(ngModel)]="lastname" [inputType]="'text'"></app-input-field-text>
+  <app-label [labelName]="'Middle name'"></app-label>
+  <app-input-field-text name="middleName" [(ngModel)]="middleName" [inputType]="'text'"></app-input-field-text>
+
+  <app-label [labelName]="'Last name'" [isRequired]="true"></app-label>
+  <app-input-field-text name="lastName" [(ngModel)]="lastName" [inputType]="'text'"></app-input-field-text>
+
+  <app-label [labelName]="'Email'" [isRequired]="true"></app-label>
+  <app-input-field-email  name="emailAddress" [(ngModel)]="emailAddress"></app-input-field-email>
+
+  <app-label [labelName]="'Address'" [isRequired]="true"></app-label>
+  <app-input-field-text name="address" [(ngModel)]="address" [inputType]="'text'"></app-input-field-text>
+
+  <app-label [labelName]="'Mobile'" [isRequired]="true"></app-label>
+  <app-input-field-text name="mobileNumber" [(ngModel)]="mobileNumber" [inputType]="'number'"></app-input-field-text>
+
+  <app-label [labelName]="'Password'" [isRequired]="true"></app-label>
+  <app-input-field-password  name="password" [(ngModel)]="password" ></app-input-field-password>
 
   <app-button buttonType="submit" buttonValue="Send"></app-button>
 

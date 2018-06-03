@@ -3,6 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
 import {LabelComponent} from './shared-utils/form-utils/label/label.component';
@@ -35,6 +36,7 @@ import {UserService} from './users/shared/user.service';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     NgbModule.forRoot(),
     AppRoutingModule,
     HttpClientModule

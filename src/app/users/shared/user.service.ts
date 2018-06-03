@@ -10,8 +10,8 @@ const httpOptions = {
   headers: new HttpHeaders({
     // 'Access-Control-Allow-Origin' : '*',
     // 'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
-    // 'Content-Type': 'application/json',
-    'Accept': 'application/json'
+    //  'Content-Type': 'application/json',
+    // 'Accept': 'application/json'
   })
 };
 
@@ -23,7 +23,7 @@ export class UserService {
   private userUrl = 'http://10.13.200.57:8080/api/v1/user';
   constructor( private http: HttpClient) {}
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.userUrl, httpOptions)
+    return this.http.get<User[]>(this.userUrl)
       .pipe(
         tap(users => console.log(users)),
       );
@@ -50,22 +50,23 @@ export class UserService {
     // console.log(deleteUrl);
     return;
   }
-  deleteUser(user: User): Observable<{}> {
-    const id = typeof user === 'number' ? user : user.id;
-    const url = `${this.userUrl}/delete?id=${id}`;
-    console.log(url);
-    return this.http.post(url, '').pipe();
-  }
-
-  // deleteUserParam(user: User): Observable<{}> {
+  // deleteUser(user: User): Observable<{}> {
   //   const id = typeof user === 'number' ? user : user.id;
-  //   // const deleteUrl = this.userUrl + '/delete?id=' + id;
-  //   const params = new HttpParams().set('id', id);
-  //   const url = `${this.userUrl}/delete` + {params: params};
-  //   console.log(params);
+  //   const url = `${this.userUrl}/delete?id=${id}`;
   //   console.log(url);
   //   return this.http.post(url, '').pipe();
   // }
+
+  deleteUserParam(user: User): Observable<{}> {
+    const id = typeof user === 'number' ? user : user.id;
+    // const deleteUrl = this.userUrl + '/delete?id=' + id;
+    const params = new HttpParams();
+    params.set('id', id.toString());
+    const url = `${this.userUrl}/delete` + {params: params};
+    console.log(params);
+    console.log(url);
+    return this.http.post(url, '').pipe();
+  }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
