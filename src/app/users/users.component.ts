@@ -89,7 +89,7 @@ export class UsersComponent implements OnInit {
     // let body: User = value;
     this.http.post<User>('http://10.13.200.57:8080/api/v1/user', value, {headers: httpHeaders}).subscribe(
       res => {
-        console.log(res);
+       console.log(res);
       },
       err => {
         console.log('error occurred');
