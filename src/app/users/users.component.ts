@@ -22,9 +22,14 @@ export class UsersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.getUser();
     this.getUsers();
   }
 
+  getUser(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.userService.getUsers(id).subscribe(users => this.users = users);
+  }
   addUser(): void {
     // this.userService.addUser()
     // .subscribe(onSuccess => {console.log(onSuccess)}, onError => {console.log(onError)});

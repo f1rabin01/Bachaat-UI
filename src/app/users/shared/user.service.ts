@@ -20,13 +20,17 @@ const httpPostOptions = {
 };
 @Injectable()
 export class UserService {
-  private userUrl = 'http://10.13.200.57:8080/api/v1/user';
+  private userUrl = 'http://10.13.200.55:8080/bachaat/api/v1/user';
   constructor( private http: HttpClient) {}
-  getUsers(): Observable<User[]> {
+  getUsers(id?: number): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl)
       .pipe(
         tap(users => console.log(users)),
       );
+  }
+  getUser(id: Number): Observable<User>{
+    const url = `${this.userUrl}\${id}`;
+    return;
   }
   addUser(): Observable<User> {
     const newUser = JSON.stringify({
