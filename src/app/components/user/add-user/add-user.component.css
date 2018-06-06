@@ -1,0 +1,6 @@
+.error-msg-server{
+  position: absolute;
+  color:darkred;
+  margin-top:-20px;
+  right: 15px;
+}

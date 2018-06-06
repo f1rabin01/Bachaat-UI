@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {FlashMessageModule} from 'angular-flash-message/dist';
 
 import {AppComponent} from './app.component';
 import {LabelComponent} from './shared-utils/form-utils/label/label.component';
@@ -18,8 +19,11 @@ import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {AppRoutingModule} from './app-routing.module';
 import {UserComponent} from './components/user/user.component';
-import {UserService} from './services/user/user.service';
 import { AddUserComponent } from './components/user/add-user/add-user.component';
+
+import {UserService} from './services/user/user.service';
+import {MessageService} from './services/message/message.service';
+import { ErrorComponent } from './shared-utils/form-utils/error/error.component';
 
 @NgModule({
   declarations: [
@@ -35,19 +39,21 @@ import { AddUserComponent } from './components/user/add-user/add-user.component'
     LoginComponent,
     RegisterComponent,
     UserComponent,
-    AddUserComponent
+    AddUserComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     NgbModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    FlashMessageModule
   ],
   exports: [
     RouterModule,
   ],
-  providers: [UserService],
+  providers: [UserService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

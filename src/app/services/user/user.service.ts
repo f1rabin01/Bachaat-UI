@@ -6,19 +6,29 @@ import { of } from 'rxjs/observable/of';
 import { HttpHeaders } from '@angular/common/http';
 
 import { User } from '../../models/user.model';
+import { MessageService } from '../message/message.service';
 
 @Injectable()
 export class UserService {
   user: User;
   private userUrl = 'http://10.13.200.55:8080/bachaat/api/v1/user';
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private messageService: MessageService,
+  ) { }
 
   addUser(newUser, header): Observable<any> {
     const httpHeader = { headers: new HttpHeaders(header) };
     return this.http.post(this.userUrl, newUser, httpHeader).pipe(
-        tap( _ => this.log(`added user = ${newUser}`)),
-        catchError(this.handleError<User>('User added'))
+        // tap( this.successMessage<User>( 'success' )),
+      tap(_ => this.successMessage('success')),
+      catchError(this.handleError<User>('User added'))
+        //   catchError(console.log('error'))
       );
+  }
+  private successMessage<T> (value) {
+    const successMsg = 'User Added Successfully';
+    this.messageService.add(null, successMsg);
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
@@ -28,8 +38,12 @@ export class UserService {
       console.error(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
+      console.log(error.error.errors);
+      const errorMsgArray = error.error.errors;
+      this.log(`${operation} failed: ${error.error.errorMessage ? error.error.errorMessage : error.error.message }`);
+      console.log(error.error.errorMessage ? error.error.errorMessage : error.error.message);
+      const errorMsg = error.error.errorMessage ? error.error.errorMessage : error.error.message;
+      this.messageService.add(errorMsgArray, errorMsg);
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
