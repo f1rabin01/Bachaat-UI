@@ -1,0 +1,5 @@
+<div style="margin-top: -16px" *ngIf="messageService.get() ">
+  <div *ngFor = "let msg of messageService.messages">
+    <div class="alert alert-danger" *ngIf = "msg.fieldName === fieldName"><b class="error-msg-server">{{msg.errorMessage}}</b></div>
+  </div>
+</div>
