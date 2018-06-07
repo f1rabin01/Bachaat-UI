@@ -1,4 +1,4 @@
-import {Component, forwardRef, Input, OnInit} from '@angular/core';
+import {Component, forwardRef, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 const noop = () => {
@@ -16,12 +16,13 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   styleUrls: ['./input-field-text.component.css'],
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
-export class InputFieldTextComponent implements OnInit, ControlValueAccessor {
+export class InputFieldTextComponent implements OnInit, OnChanges, ControlValueAccessor {
   @Input() inputType: string;
   @Input() isRequired?: boolean;
   @Input() minLength?: number;
   @Input() maxLength?: number;
 
+  @ViewChild('formInput') formInput;
   // The internal data model
   private innerValue: any = '';
 
@@ -35,8 +36,13 @@ export class InputFieldTextComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
+    // console.log(this.formInput.status);
   }
-
+  ngOnChanges() {
+  }
+  formInputChange(event) {
+    console.log(this.formInput.status);
+  }
   // get accessor
   get value(): any {
     return this.innerValue;

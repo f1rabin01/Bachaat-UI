@@ -1,3 +1,3 @@
 <span>
-  <label><b>{{labelName}}</b><small [hidden]="isRequired">(optional)</small></label>
+  <label><b>{{labelName}}<small class="required" *ngIf="isRequired">*</small></b><small [hidden]="isRequired">(optional)</small></label>
 </span>

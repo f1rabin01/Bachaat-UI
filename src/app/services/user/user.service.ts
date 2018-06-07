@@ -11,7 +11,7 @@ import { MessageService } from '../message/message.service';
 @Injectable()
 export class UserService {
   user: User;
-  private userUrl = 'http://10.13.200.55:8080/bachaat/api/v1/user';
+  private userUrl = 'http://10.13.200.55:8080/bachaat/api/v1/users';
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
@@ -19,12 +19,7 @@ export class UserService {
 
   addUser(newUser, header): Observable<any> {
     const httpHeader = { headers: new HttpHeaders(header) };
-    return this.http.post(this.userUrl, newUser, httpHeader).pipe(
-        // tap( this.successMessage<User>( 'success' )),
-      tap(_ => this.successMessage('success')),
-      catchError(this.handleError<User>('User added'))
-        //   catchError(console.log('error'))
-      );
+    return this.http.post(this.userUrl, newUser, httpHeader);
   }
   private successMessage<T> (value) {
     const successMsg = 'User Added Successfully';
