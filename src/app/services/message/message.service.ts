@@ -4,22 +4,28 @@ import { FlashMessage } from 'angular-flash-message/dist';
 @Injectable()
 export class MessageService {
   messages: Array<string> | object ;
-  errorMsg: string;
+  errorFlashMsg: string;
   constructor(
     private flashMessage: FlashMessage,
   ) { }
-  add(errorMsgArray, errorMsg) {
+  setMessage(errorMsgArray, errorMsg, messageType) {
     this.messages = errorMsgArray;
-    this.errorMsg = errorMsg;
-    console.log(this.messages);
-    console.log(this.errorMsg);
-    this.flashMessage.success(this.errorMsg, {
+    this.errorFlashMsg = errorMsg;
+    if (messageType === 'success') {
+      this.flashMessage.success(this.errorFlashMsg, {
+        delay: 4000,
+        close: true,
+        closeBtnClass: 'btn btn-sm'
+      });
+    } else if (messageType === 'error') {
+      this.flashMessage.danger(this.errorFlashMsg, {
       delay: 4000,
       close: true,
       closeBtnClass: 'btn btn-sm'
     });
+    }
   }
-  get() {
+  getMessage() {
     return this.messages;
   }
 }

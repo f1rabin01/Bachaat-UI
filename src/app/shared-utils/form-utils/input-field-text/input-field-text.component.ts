@@ -1,4 +1,4 @@
-import {Component, forwardRef, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
+import {Component, forwardRef, Input, OnChanges, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 const noop = () => {
@@ -21,7 +21,8 @@ export class InputFieldTextComponent implements OnInit, OnChanges, ControlValueA
   @Input() isRequired?: boolean;
   @Input() minLength?: number;
   @Input() maxLength?: number;
-
+  @Input() formStatus: boolean;
+  @Output() formStatusChanged: EventEmitter<any> = new EventEmitter();
   @ViewChild('formInput') formInput;
   // The internal data model
   private innerValue: any = '';
@@ -36,12 +37,12 @@ export class InputFieldTextComponent implements OnInit, OnChanges, ControlValueA
   }
 
   ngOnInit() {
-    // console.log(this.formInput.status);
+    // this.formInput.dirty = true;
   }
   ngOnChanges() {
   }
   formInputChange(event) {
-    console.log(this.formInput.status);
+    this.formStatusChanged.emit(this.formInput.dirty);
   }
   // get accessor
   get value(): any {

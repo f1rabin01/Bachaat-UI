@@ -9,5 +9,6 @@ export class User {
   activationCode: number;
   active: string;
   password: string;
+  confirm_password: string;
   roles: any;
 }

@@ -4,11 +4,8 @@
     <div class="row">
       <div class="col-sm-6">
         <app-label [labelName]="'First name'" [isRequired]="true"></app-label>
-        <app-input-field-text #first_name name="firstName" [(ngModel)]="firstName" [inputType]="'text'"></app-input-field-text>
-        <div [hidden]="first_name.formInput.status == 'VALID'">
-          <app-error [fieldName]="'firstName'"></app-error>
-        </div>
-        {{first_name.formInput.status}}
+        <app-input-field-text [formStatus]="firstNameStatusValue" (formStatusChanged)="firstNameStatusHandler($event)" name="firstName" [(ngModel)]="firstName" [inputType]="'text'"></app-input-field-text>
+        <app-error [formStatusValue]=firstNameStatusValue [fieldName]="'firstName'"></app-error>
       </div>
       <div class="col-sm-6">
         <app-label [labelName]="'Middle name'"></app-label>
@@ -19,51 +16,43 @@
     <div class="row">
       <div class="col-sm-6">
         <app-label [labelName]="'Last name'" [isRequired]="true"></app-label>
-        <app-input-field-text name="lastName" [(ngModel)]="lastName" [inputType]="'text'"></app-input-field-text>
-        <app-error [fieldName]="'lastName'"></app-error>
+        <app-input-field-text [formStatus]="lastNameStatusValue" (formStatusChanged)="lastNameStatusHandler($event)" name="lastName" [(ngModel)]="lastName" [inputType]="'text'"></app-input-field-text>
+        <app-error [formStatusValue]=lastNameStatusValue [fieldName]="'lastName'"></app-error>
       </div>
       <div class="col-sm-6">
         <app-label [labelName]="'Email'" [isRequired]="true"></app-label>
-        <app-input-field-email  name="emailAddress" [(ngModel)]="emailAddress"></app-input-field-email>
-        <app-error [fieldName]="'emailAddress'"></app-error>
+        <app-input-field-email [formStatus]="emailStatusValue" (formStatusChanged)="emailStatusHandler($event)"  name="emailAddress" [(ngModel)]="emailAddress"></app-input-field-email>
+        <app-error [formStatusValue]=emailStatusValue [fieldName]="'address'"></app-error>
       </div>
     </div>
 
     <div class="row">
       <div class="col-sm-6">
         <app-label [labelName]="'Address'" [isRequired]="true"></app-label>
-        <app-input-field-text name="address" [(ngModel)]="address" [inputType]="'text'"></app-input-field-text>
-        <app-error [fieldName]="'address'"></app-error>
+        <app-input-field-text [formStatus]="addressStatusValue" (formStatusChanged)="addressStatusHandler($event)" name="address" [(ngModel)]="address" [inputType]="'text'"></app-input-field-text>
+        <app-error [formStatusValue]=addressStatusValue [fieldName]="'address'"></app-error>
       </div>
       <div class="col-sm-6">
         <app-label [labelName]="'Mobile'" [isRequired]="true"></app-label>
-        <app-input-field-text #child2 name="mobileNumber" [(ngModel)]="mobileNumber" [inputType]="'number'" [minLength]="10"></app-input-field-text>
-        <div [hidden]="child2.formInput.status == 'VALID'">
-          <app-error [fieldName]="'mobileNumber'"></app-error>
-        </div>
+        <app-input-field-text [formStatus]="mobileStatusValue" (formStatusChanged)="mobileStatusHandler($event)" name="mobileNumber" [(ngModel)]="mobileNumber" [inputType]="'number'" [minLength]="10"></app-input-field-text>
+        <app-error [formStatusValue]=mobileStatusValue [fieldName]="'mobileNumber'"></app-error>
       </div>
     </div>
 
     <div class="row">
       <div class="col-sm-6">
         <app-label [labelName]="'Password'" [isRequired]="true"></app-label>
-        <app-input-field-password  name="password" [(ngModel)]="password" ></app-input-field-password>
-        <app-error [fieldName]="'password'"></app-error>
+        <app-input-field-password [formStatus]="passwordStatusValue" (formStatusChanged)="passwordStatusHandler($event)"  name="password" [(ngModel)]="password" ></app-input-field-password>
+        <app-error [formStatusValue]=passwordStatusValue [fieldName]="'password'"></app-error>
       </div>
       <div class="col-sm-6">
         <app-label [labelName]="'Confirm Password'" [isRequired]="true"></app-label>
         <app-input-field-password  name="confirm_password" [(ngModel)]="confirm_password" ></app-input-field-password>
-        <app-error [fieldName]="'password'"></app-error>
+        <div *ngIf="confirm_password && password != confirm_password">
+          <div class="alert alert-danger"> Confirm Password doesn't match </div>
+        </div>
       </div>
-      <!--{{form.values | json}}-->
     </div>
-
-    <!--<div class= "alert alert-danger" *ngIf = "messageService.get() && messageService.message2[0].fieldName === 'firstName'">{{messageService.message2[0].errorMessage}}</div>-->
-    <!--<div  class= "alert alert-danger" *ngIf = "messageService.get() && messageService.message2[2].fieldName === 'lastName'">{{messageService.message2[2].errorMessage}}</div>-->
     <app-button buttonType="submit" buttonValue="Send"></app-button>
-    {{form.value | json}}
   </form>
 </div>
-
-<!--<div *ngIf = "messageService.get()">{{messageService.messages[0].errorMessage}}</div>-->
-<!--<div *ngIf = "messageService.get() && messageService.messages[0].fieldName === 'firstName'">{{messageService.messages.length}}&#45;&#45;&#45;&#45;&#45;&#45;{{messageService.messages[1].errorMessage}}</div>-->

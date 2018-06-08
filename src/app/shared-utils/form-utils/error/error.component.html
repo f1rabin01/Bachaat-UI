@@ -1,5 +1,7 @@
-<div style="margin-top: -16px" *ngIf="messageService.get() ">
+<div [hidden]="formStatusValue == true">
+<div style="margin-top: -16px" *ngIf="messageService.getMessage() ">
   <div *ngFor = "let msg of messageService.messages">
-    <div class="alert alert-danger" *ngIf = "msg.fieldName === fieldName"><b class="error-msg-server">{{msg.errorMessage}}</b></div>
+    <div class="alert alert-danger" *ngIf = "msg.fieldName === fieldName"><p class="error-msg-server">{{msg.errorMessage}}</p></div>
   </div>
+</div>
 </div>

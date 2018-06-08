@@ -1,7 +1,6 @@
-import {AfterViewInit, Component, OnInit, Input, ElementRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import { UserService} from '../../../services/user/user.service';
 import { MessageService } from '../../../services/message/message.service';
-import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-add-user',
@@ -9,36 +8,51 @@ import {FormGroup} from '@angular/forms';
   styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent implements OnInit, AfterViewInit {
-  @ViewChild('first_name') first_name;
-  hideError: boolean;
+  // @ViewChild('first_name') first_name;
+  firstNameStatusValue: any;
+  lastNameStatusValue: boolean;
+  addressStatusValue: boolean;
+  mobileStatusValue: boolean;
+  emailStatusValue: boolean;
+  passwordStatusValue: boolean;
   constructor(
     private userService: UserService,
     public messageService: MessageService,
   ) { }
 
   ngOnInit() {
-    this.hideError = false;
-    console.log();
   }
   ngAfterViewInit() {
-    console.log(this.first_name.formInput.status);
-    if (this.first_name.formInput.status === 'VALID') {
-      this.hideError = true;
-    }
+  }
+  firstNameStatusHandler(status: any) {
+    this.firstNameStatusValue = status;
+  }
+  lastNameStatusHandler(status: any) {
+    this.lastNameStatusValue = status;
+  }
+  addressStatusHandler(status: boolean){
+    this.addressStatusValue = status;
+  }
+  mobileStatusHandler(status: boolean){
+    this.mobileStatusValue = status;
+  }
+  emailStatusHandler(status: any) {
+    this.emailStatusValue = status;
+  }
+  passwordStatusHandler(status: boolean) {
+    this.passwordStatusValue = status;
   }
   onSubmit(value): void {
     const header = {'Content-Type': 'application/json'} ;
     this.userService.addUser(value, header).subscribe(
       res => {
-        console.log(res.errorMessage);
-        const successMsg = 'User Added Successfully';
-        this.messageService.add(null, successMsg);
+        const successMsg = res.message;
+        this.messageService.setMessage(null, successMsg, 'success');
       },
       err => {
-        console.log(err.error.errorMessage);
         const errorMsgArray = err.error.errors;
         const errorMsg = err.error.errorMessage ? err.error.errorMessage : err.error.message;
-        this.messageService.add(errorMsgArray, errorMsg);
+        this.messageService.setMessage(errorMsgArray, errorMsg, 'error');
       }
     );
   }

@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddUserComponent } from './add-user.component';
-import {UserService} from '../../../services/user/user.service';
+
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {ButtonComponent} from '../../../shared-utils/form-utils/button/button.component';
@@ -9,6 +9,11 @@ import {InputFieldTextComponent} from '../../../shared-utils/form-utils/input-fi
 import {InputFieldEmailComponent} from '../../../shared-utils/form-utils/input-field-email/input-field-email.component';
 import {LabelComponent} from '../../../shared-utils/form-utils/label/label.component';
 import {InputFieldPasswordComponent} from '../../../shared-utils/form-utils/input-field-password/input-field-password.component';
+import {ErrorComponent} from '../../../shared-utils/form-utils/error/error.component';
+
+import {UserService} from '../../../services/user/user.service';
+import {MessageService} from '../../../services/message/message.service';
+import {FlashMessage} from 'angular-flash-message/dist';
 
 describe('AddUserComponent', () => {
   let component: AddUserComponent;
@@ -18,10 +23,10 @@ describe('AddUserComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ AddUserComponent, LabelComponent, InputFieldPasswordComponent,
         InputFieldTextComponent, InputFieldEmailComponent,
-        ButtonComponent
+        ButtonComponent, ErrorComponent
       ],
       imports: [ FormsModule, HttpClientModule ],
-      providers: [UserService]
+      providers: [UserService, MessageService, FlashMessage]
     })
     .compileComponents();
   }));

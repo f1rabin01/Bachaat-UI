@@ -6,8 +6,7 @@
          minlength="{{minLength}}"
          maxlength="{{maxLength}}"
          [required]="isRequired"
-          >
-  {{formInput.status}}
+         (keyup)="formInputChange($event)">
   <div [hidden]="formInput.valid || formInput.pristine" class="alert alert-danger">
     <div [hidden]="!formInput.hasError('required')" class="error">This field is required</div>
     <div [hidden]="!formInput.hasError('minlength')" class="error">Min length should be {{minLength}}</div>

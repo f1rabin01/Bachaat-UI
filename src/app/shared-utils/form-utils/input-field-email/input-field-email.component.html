@@ -3,7 +3,8 @@
          [required]="isRequired"
          [(ngModel)]="value" name="email"
          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-         #email="ngModel">
+         #email="ngModel"
+         (keyup)="formInputChange($event)">
   <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
     <div [hidden]="!email.hasError('required')">Email is required</div>
     <div [hidden]="!email.hasError('pattern')">Email format should be

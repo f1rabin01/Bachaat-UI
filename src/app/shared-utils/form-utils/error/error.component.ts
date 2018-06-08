@@ -7,6 +7,7 @@ import { MessageService } from '../../../services/message/message.service';
 })
 export class ErrorComponent implements OnInit {
   @Input() fieldName;
+  @Input() formStatusValue;
   constructor(public messageService: MessageService) { }
 
   ngOnInit() {

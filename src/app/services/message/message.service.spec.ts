@@ -1,11 +1,12 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { MessageService } from './message.service';
+import { FlashMessage} from 'angular-flash-message/dist';
 
 describe('MessageService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MessageService]
+      providers: [MessageService, FlashMessage]
     });
   });
 
